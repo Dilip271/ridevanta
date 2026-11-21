@@ -65,11 +65,12 @@
 <footer><div class="wrap foot"><div><a class="brand" href="#home">Ride<span>Vanta</span></a><div>Move Beyond Miles.</div></div><div>© <span id="year"></span> RideVanta. All rights reserved.</div><div><a href="#contact">Contact</a> · <a href="#partner">Partner Enquiry</a></div></div><div class="wrap notice">RideVanta website launch version. Services, fares and vehicle availability are subject to confirmation. This website currently collects enquiries and does not process payments or confirm rides automatically. Ensure all applicable business, aggregator and transport requirements are met before operating regulated booking services.</div></footer>
 <script>
 /* IMPORTANT: Replace these two values before publishing. Use country code, e.g. 91XXXXXXXXXX. */
-const RIDEVANTA_WHATSAPP = "91XXXXXXXXXX";
+const RIDEVANTA_WHATSAPP = "919678274671";
 const RIDEVANTA_EMAIL = "hello@ridevanta.in";
 document.getElementById("year").textContent=new Date().getFullYear();
 document.getElementById("emailLink").href="mailto:"+RIDEVANTA_EMAIL;
 document.getElementById("emailLink").textContent=RIDEVANTA_EMAIL;
+document.getElementById("phoneText").textContent="+91 96782 74671";
 document.getElementById("date").min=new Date().toISOString().split("T")[0];
 function sendWhatsApp(message){
   if(!/^\d{10,15}$/.test(RIDEVANTA_WHATSAPP)){alert("Website setup pending: Please add your WhatsApp number in index.html (RIDEVANTA_WHATSAPP) before using enquiry forms.");return;}
