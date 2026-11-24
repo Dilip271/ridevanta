@@ -17,7 +17,51 @@
 :root{--bg:#090909;--panel:#141414;--gold:#d6b15e;--gold2:#f2d58b;--text:#f7f4ed;--muted:#aaa49a;--line:#30291d}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.55}a{color:inherit;text-decoration:none}button,input,select{font:inherit}.wrap{width:min(1160px,92%);margin:auto}
 .topbar{background:#17140e;color:var(--gold2);font-size:13px;padding:8px 0}.topbar .wrap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
-header{position:sticky;top:0;z-index:20;background:#080808f5;border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}.nav{min-height:104px;display:flex;align-items:center;justify-content:space-between;gap:20px}.logo{display:block;width:min(590px,58vw);max-height:96px;object-fit:contain;object-position:left center}.navlinks{display:flex;align-items:center;gap:20px;font-size:13px}.navlinks a:hover{color:var(--gold)}.menu{display:none;background:transparent;color:var(--gold);border:1px solid var(--gold);padding:8px 12px;border-radius:5px}
+header{position:sticky;top:0;z-index:20;background:#080808f5;border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}.nav{min-height:104px;display:flex;align-items:center;justify-content:space-between;gap:20px}.logo{display:block;width:min(590px,58vw);max-height:96px;object-fit:contain;object-position:left center}.navlinks{display:flex;align-items:center;gap:20px;font-size:13px}.navlinks a:hover{color:var(--gold)}.menu{display:none;background:transparent;color:var(--gold);border:1px solid var(--gold);padding:8px 12px;border-radius:5px} 
+  /* RideVanta Header Contact Buttons */
+.header-contact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-contact a {
+  border: 1px solid #d6b15e;
+  color: #f2d58b;
+  padding: 9px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.header-contact a:hover {
+  background: #211c12;
+}
+
+@media (max-width: 760px) {
+  .nav {
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .menu {
+    order: 2;
+    margin-left: auto;
+  }
+
+  .header-contact {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    padding-bottom: 12px;
+  }
+
+  .header-contact a {
+    font-size: 12px;
+    padding: 8px 14px;
+  }
+}
 .btn{display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--gold2),#b88c37);color:#17130a;border:0;border-radius:6px;padding:13px 20px;font-weight:800;cursor:pointer}.btn.outline{background:transparent;border:1px solid var(--gold);color:var(--gold)}
 .hero{min-height:660px;display:flex;align-items:center;background:linear-gradient(90deg,#070707 0%,#070707e8 44%,#07070755 100%),url('https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=2000&q=85') center/cover}.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:35px;align-items:center;padding:65px 0}.eyebrow{font-size:12px;letter-spacing:3px;color:var(--gold);font-weight:800;text-transform:uppercase}.hero h1{font-size:clamp(42px,6.5vw,76px);line-height:1.04;margin:18px 0}.hero h1 span{color:var(--gold2)}.hero p{color:#d4cec3;font-size:17px;max-width:570px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
 .service-title{text-align:center;color:var(--gold2);font-size:26px;font-weight:800;margin:0 0 17px}.service-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.service-grid a{min-height:75px;background:#171510ed;border:1px solid #40351f;border-radius:12px;display:flex;align-items:center;gap:12px;padding:12px;font-size:16px;font-weight:700;line-height:1.25}.service-grid a:hover{border-color:var(--gold);background:#211c12}.ico{font-size:27px}
@@ -37,7 +81,11 @@ footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-s
 <body>
 <div class="topbar"><div class="wrap"><span>Premium Taxi & Transport Services Across India</span><span>Jaipur, Rajasthan · Serving India</span></div></div>
 <header><div class="wrap nav">
-<a href="#home" aria-label="RideVanta home"><img class="logo" src="file_000000004c9882118d8a3288bb12e1b4.png" alt="RideVanta Jaipur Rajasthan – Move Beyond Miles"></a>
+<a href="#home" aria-label="RideVanta home"><img class="logo" src="file_000000004c9882118d8a3288bb12e1b4.png" alt="RideVanta Jaipur Rajasthan – Move Beyond Miles"></a> 
+  <div class="header-contact">
+  <a href="tel:+919678274671">☎ Call: 9678274671</a>
+  <a href="https://wa.me/919678274671" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
 <button class="menu" aria-label="Open navigation" aria-expanded="false" onclick="const n=document.querySelector('.navlinks');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'))">☰</button>
 <nav class="navlinks"><a href="#services">Services</a><a href="#fleet">Our Fleet</a><a href="#about">About</a><a href="#partner">Partner With Us</a><a href="#contact">Contact</a><a class="btn" href="#booking">Book a Taxi</a></nav>
 </div></header>
