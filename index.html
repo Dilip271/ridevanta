@@ -175,8 +175,9 @@ document.querySelectorAll(".service-grid a[data-service]").forEach(function (lin
   });
 });
 
-// Booking enquiry
-document.getElementById("bookingForm").addEventListener("submit", function (event) {
+
+// Booking enquiry: Email + existing WhatsApp
+document.getElementById("bookingForm").addEventListener("submit", async function (event) {
   event.preventDefault();
 
   const value = id => document.getElementById(id).value.trim();
@@ -196,10 +197,53 @@ document.getElementById("bookingForm").addEventListener("submit", function (even
     "Source: ridevanta.in"
   ].join("\n");
 
-  const url = "https://wa.me/" + RIDEVANTA_WHATSAPP + "?text=" + encodeURIComponent(message);
-  const popup = window.open(url, "_blank");
-  if (!popup) window.location.href = url;
+  // Keep the existing WhatsApp enquiry option
+  const whatsappUrl = "https://wa.me/" + RIDEVANTA_WHATSAPP + "?text=" + encodeURIComponent(message);
+  const whatsappWindow = window.open(whatsappUrl, "_blank");
+
+  const button = this.querySelector('button[type="submit"]');
+  const oldText = button.textContent;
+  button.disabled = true;
+  button.textContent = "Sending Enquiry...";
+
+  try {
+    await emailjs.send(
+      "service_w3bjfqe",
+      "template_cdj1d9o",
+      {
+        customer: value("customer"),
+        phone: value("phone"),
+        trip: value("trip"),
+        pickup: value("pickup"),
+        drop: value("drop") || "Not specified",
+        vehicle: value("vehicle"),
+        date: value("date"),
+        time: value("time") || "Not specified",
+        passengers: value("passengers"),
+        notes: value("notes") || "None"
+      },
+      { publicKey: "wBGzwPOuvKrMKxZNi" }
+    );
+
+    alert("Booking enquiry sent successfully to RideVanta!");
+    this.reset();
+    document.getElementById("date").min = new Date().toISOString().split("T")[0];
+
+    if (!whatsappWindow) {
+      window.location.href = whatsappUrl;
+    }
+  } catch (error) {
+    console.error("EmailJS error:", error);
+    alert("Email could not be sent. Please use WhatsApp to send your enquiry.");
+    if (!whatsappWindow) {
+      window.location.href = whatsappUrl;
+    }
+  } finally {
+    button.disabled = false;
+    button.textContent = oldText;
+  }
 });
+  
 
 // Partner enquiry
 document.getElementById("partnerEnquiry").addEventListener("submit", function (event) {
@@ -220,6 +264,6 @@ document.getElementById("partnerEnquiry").addEventListener("submit", function (e
   const popup = window.open(url, "_blank");
   if (!popup) window.location.href = url;
 });
-</script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </body>
 </html>
