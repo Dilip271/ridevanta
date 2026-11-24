@@ -165,4 +165,61 @@ const RIDEVANTA_WHATSAPP = "919678274671";
 const RIDEVANTA_EMAIL = "hello@ridevanta.in";
 document.getElementById("year").textContent = new Date().getFullYear();
 document.getElementById("emailLink").href = "mailto:" + RIDEVANTA_EMAIL;
-document.getElementById("date").min = new Date().toISOString().split("T")[
+
+document.getElementById("date").min = new Date().toISOString().split("T")[0];
+
+// Service selection
+document.querySelectorAll(".service-grid a[data-service]").forEach(function (link) {
+  link.addEventListener("click", function () {
+    document.getElementById("trip").value = this.dataset.service;
+  });
+});
+
+// Booking enquiry
+document.getElementById("bookingForm").addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const value = id => document.getElementById(id).value.trim();
+
+  const message = [
+    "NEW RIDEVANTA BOOKING ENQUIRY",
+    "Service: " + value("trip"),
+    "Pickup: " + value("pickup"),
+    "Drop: " + (value("drop") || "Not specified"),
+    "Vehicle: " + value("vehicle"),
+    "Travel date: " + value("date"),
+    "Travel time: " + (value("time") || "Not specified"),
+    "Passengers: " + value("passengers"),
+    "Customer name: " + value("customer"),
+    "Mobile: " + value("phone"),
+    "Additional details: " + (value("notes") || "None"),
+    "Source: ridevanta.in"
+  ].join("\n");
+
+  const url = "https://wa.me/" + RIDEVANTA_WHATSAPP + "?text=" + encodeURIComponent(message);
+  const popup = window.open(url, "_blank");
+  if (!popup) window.location.href = url;
+});
+
+// Partner enquiry
+document.getElementById("partnerEnquiry").addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const value = id => document.getElementById(id).value.trim();
+
+  const message = [
+    "NEW RIDEVANTA PARTNER ENQUIRY",
+    "Owner / Business: " + value("pname"),
+    "Mobile: " + value("pphone"),
+    "City: " + value("pcity"),
+    "Vehicle type: " + document.getElementById("ptype").value,
+    "Source: ridevanta.in"
+  ].join("\n");
+
+  const url = "https://wa.me/" + RIDEVANTA_WHATSAPP + "?text=" + encodeURIComponent(message);
+  const popup = window.open(url, "_blank");
+  if (!popup) window.location.href = url;
+});
+</script>
+</body>
+</html>
