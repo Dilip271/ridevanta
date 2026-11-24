@@ -158,7 +158,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-s
 </div></div></div></div></section>
 </main>
 <footer><div class="wrap foot"><div><strong style="color:var(--text)">Ride<span style="color:var(--gold)">Vanta</span></strong><div>Move Beyond Miles.</div></div><div>© <span id="year"></span> RideVanta. All rights reserved.</div><div><a href="#contact">Contact</a> · <a href="#partner">Partner Enquiry</a></div></div><div class="wrap notice">RideVanta website collects enquiries; it does not process payments or automatically confirm rides. Services, fares and vehicle availability are subject to confirmation. Ensure applicable business, aggregator and transport requirements are met before operating regulated booking services.</div></footer>
-
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
 /* Existing RideVanta contact details */
 const RIDEVANTA_WHATSAPP = "919678274671";
@@ -264,6 +264,5 @@ document.getElementById("partnerEnquiry").addEventListener("submit", function (e
   const popup = window.open(url, "_blank");
   if (!popup) window.location.href = url;
 });
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </body>
 </html>
